@@ -1,13 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
+import NavBar from 'components/NavBar';
+import Page from 'components/Page';
 import Capsules from 'modules/spaceX/capsules';
 import { ALL_CAPSULES } from 'types/endpoints';
 
 const Home = () => {
-  const { data, isLoading } = useQuery([ALL_CAPSULES], Capsules.all);
+  useQuery([ALL_CAPSULES], Capsules.all);
 
-  console.log(data, isLoading);
-
-  return <div>Home</div>;
+  return (
+    <Page>
+      <NavBar />
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    </Page>
+  );
 };
 
 export default Home;
