@@ -1,5 +1,7 @@
+import Drawer from 'components/Drawer';
 import React, { PropsWithChildren } from 'react';
-import Drawer from './Drawer';
+
+import './index.css';
 
 interface IProps {
   drawer?: boolean;
@@ -7,7 +9,7 @@ interface IProps {
 
 const Page: React.FC<PropsWithChildren<IProps>> = ({ children, drawer }) => {
   return (
-    <div className="container max-w-none min-h-screen">
+    <div id="page" className="container max-w-none min-h-screen">
       {children}
       {drawer && <Drawer />}
     </div>

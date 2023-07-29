@@ -5,6 +5,13 @@ const AxiosInstance = Axios.create({
 });
 
 export default class Postman {
-  static get = async <Response>(ep: string, config?: AxiosRequestConfig) => (await AxiosInstance.get<Response>(ep, config)).data;
+  // TS Operator overloading example
+  static get<Response>(ep: string): Promise<Response>;
+  static get<Response>(ep: string, config: AxiosRequestConfig): Promise<Response>;
+
+  static async get<Response>(ep: string, config?: AxiosRequestConfig) {
+    return (await AxiosInstance.get<Response>(ep, config)).data;
+  }
+
   static post = async <Data, Response>(ep: string, data: Data) => await AxiosInstance.post<Data, Response>(ep, data);
 }

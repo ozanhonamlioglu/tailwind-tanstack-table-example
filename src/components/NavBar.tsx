@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { NavItems } from 'routes/main-navbar/consts';
+import { toggleDrawer } from 'utils/drawer';
 
 interface IProps {
   selectedItem?: (path: string) => void;
@@ -23,16 +24,9 @@ const NavBar: React.FC<IProps> = ({ selectedItem }) => {
     selectedItem?.(NavItems[index].path);
   };
 
-  const openDrawer = () => {
-    const container = document.getElementById('drawer-container');
-    const content = document.getElementById('drawer-content');
-    container?.setAttribute('data-state', 'true');
-    content?.setAttribute('data-state', 'true');
-  };
-
   return (
     <nav className="max-w-none bg-gray-800 p-5 flex flex-row justify-between text-white px-10 items-center">
-      <button className="sm:flex md:hidden" onClick={openDrawer}>
+      <button className="sm:flex md:hidden" onClick={toggleDrawer}>
         <i className="fa-solid fa-bars text-xl"></i>
       </button>
       <ol className="md:flex hidden flex-row gap-2 flex-wrap">
