@@ -1,6 +1,7 @@
+import { PropsWithChildren } from 'react';
 import { toggleDrawer } from 'utils/drawer';
 
-const Drawer = () => {
+const Drawer: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <div
       id="drawer-container"
@@ -13,7 +14,7 @@ const Drawer = () => {
         className="bg-white absolute -translate-x-full origin-left lg:w-1/4 sm:w-1/2 w-3/4 h-screen transition-all duration-150 data-[state=true]:translate-x-0"
         data-state="false"
       >
-        Drawer
+        {children}
       </div>
     </div>
   );
