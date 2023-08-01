@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { createColumnHelper, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { createColumnHelper, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import NavBar from 'components/NavBar';
 import Page, { PageBits } from 'components/Page';
 import Capsules from 'modules/spaceX/capsules';
@@ -12,17 +12,27 @@ const columnHelper = createColumnHelper<Capsule>();
 const columns = [
   columnHelper.accessor('capsule_id', {
     cell: (info) => info.getValue(),
-    header: () => <i>Capsule ID</i>,
+    header: () => <span>Capsule ID</span>,
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor('capsule_serial', {
     cell: (info) => info.getValue(),
-    header: () => <i>Capsule Serial</i>,
+    header: () => <span>Capsule Serial</span>,
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor('status', {
     cell: (info) => info.getValue(),
-    header: () => <i>Status</i>,
+    header: () => <span>Status</span>,
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor('landings', {
+    cell: (info) => info.getValue(),
+    header: () => <span>Landings</span>,
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor('details', {
+    cell: (info) => info.getValue(),
+    header: () => <span>Details</span>,
     footer: (info) => info.column.id,
   }),
 ];
@@ -34,6 +44,7 @@ const Home = () => {
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   return (
@@ -49,30 +60,8 @@ const Home = () => {
             </p>
           </TanstackTable.Caption>
 
-          <TanstackTable.THead table={table} />
-          <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Apple MacBook Pro 17
-              </th>
-              <td className="px-6 py-4">Silver</td>
-              <td className="px-6 py-4">Laptop</td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Microsoft Surface Pro
-              </th>
-              <td className="px-6 py-4">White</td>
-              <td className="px-6 py-4">Laptop PC</td>
-            </tr>
-            <tr className="bg-white dark:bg-gray-800">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Magic Mouse 2
-              </th>
-              <td className="px-6 py-4">Black</td>
-              <td className="px-6 py-4">Accessories</td>
-            </tr>
-          </tbody>
+          <TanstackTable.THead table={table} isSortable />
+          <TanstackTable.TBody table={table} />
         </TanstackTable.Table>
       </PageBits.Content>
     </Page>
