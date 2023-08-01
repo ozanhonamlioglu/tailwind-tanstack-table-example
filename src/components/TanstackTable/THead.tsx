@@ -14,7 +14,7 @@ const THead = <T,>({ table, isSortable }: IProps<T>): JSX.Element => {
             return (
               <th key={header.id} scope="col" className="px-6 py-3">
                 {header.isPlaceholder ? null : (
-                  <div className="flex items-center">
+                  <div className="flex">
                     <div className="flex flex-1 cursor-pointer" onClick={isSortable ? header.column.getToggleSortingHandler() : undefined}>
                       {flexRender(header.column.columnDef.header, header.getContext())}
                       {{

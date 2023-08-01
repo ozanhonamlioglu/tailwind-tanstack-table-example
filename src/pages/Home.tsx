@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { createColumnHelper, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import { createColumnHelper, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import NavBar from 'components/NavBar';
 import Page, { PageBits } from 'components/Page';
 import Capsules from 'modules/spaceX/capsules';
@@ -45,13 +45,14 @@ const Home = () => {
     columns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   });
 
   return (
     <Page drawer>
       <NavBar />
       <PageBits.Content>
-        <TanstackTable.Table>
+        <TanstackTable.Table table={table}>
           <TanstackTable.Caption>
             Our products
             <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
