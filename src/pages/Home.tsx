@@ -61,8 +61,8 @@ const Home = () => {
             </p>
           </TanstackTable.Caption>
 
-          <TanstackTable.THead table={table} isSortable />
-          <TanstackTable.TBody table={table} />
+          <TanstackTable.THead isSortable />
+          <TanstackTable.TBody />
         </TanstackTable.Table>
       </PageBits.Content>
     </Page>

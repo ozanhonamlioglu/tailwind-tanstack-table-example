@@ -1,11 +1,14 @@
 import { Table, flexRender } from '@tanstack/react-table';
+import useTable from './useTable';
 
 interface IProps<T> {
-  table: Table<T>;
   isSortable?: boolean;
 }
 
-const THead = <T,>({ table, isSortable }: IProps<T>): JSX.Element => {
+const THead = <T,>({ isSortable }: IProps<T>) => {
+  const table = useTable();
+
+  if (!table) return null;
   return (
     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>

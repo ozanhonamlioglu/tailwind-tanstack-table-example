@@ -1,10 +1,10 @@
-import { Table, flexRender } from '@tanstack/react-table';
+import { flexRender } from '@tanstack/react-table';
+import useTable from './useTable';
 
-interface IProps<T> {
-  table: Table<T>;
-}
+const TBody = () => {
+  const table = useTable();
 
-const TBody = <T,>({ table }: IProps<T>): JSX.Element => {
+  if (!table) return null;
   return (
     <tbody>
       {table.getRowModel().rows.map((row) => (
